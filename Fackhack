@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import os
+import time
+import subprocess
+
+# Check if zenity is installed
+def check_zenity():
+    if subprocess.call("which zenity > /dev/null", shell=True) != 0:
+        print("Zenity not found. Installing...")
+        os.system("sudo apt install zenity -y")
+
+check_zenity()
+
+def fake_popup(msg, timeout=2):
+    subprocess.Popen(f"zenity --info --timeout={timeout} --text='{msg}'", shell=True)
+    time.sleep(timeout)
+
+# GUI Fake Hack Flow
+fake_popup("🔍 Connecting to remote server...")
+fake_popup("🔐 Brute-forcing admin credentials...")
+fake_popup("💥 Access granted! Admin panel compromised.")
+fake_popup("📁 Downloading user data: 3GB...")
+fake_popup("📦 Injecting rootkit into target kernel...")
+fake_popup("💣 Triggering remote shutdown...")
+fake_popup("✅ Mission Complete. All traces erased.")
+fake_popup("👽 Hack the Planet!", 3)
